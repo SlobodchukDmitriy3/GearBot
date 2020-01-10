@@ -201,7 +201,7 @@
   "archive_empty_user": "Didn't find any messages for that user.",
   "archive_empty_channel": "Didn't find any messages for that channel",
   "archive_denied_read_perms": "You need read permissions in a channel to archive it",
-  "archive_no_subcommand": "Instructions unclear, Please seeh ``{prefix}help archive`` for the subcommands",
+  "archive_no_subcommand": "Instructions unclear, Please see ``{prefix}help archive`` for the subcommands",
   "archive_no_edit_logs": "Please enable edit logs to be able to use archiving",
   "archive_too_much": "Can 't archive more then 5000 messages",
   "message_invalid_format": "`I'm sorry but I have no clue where you want me to go look for a message with that info. Please try again by providing me the info in one of the following formats: \n - <jumplink> (can be acquired by clicking 'Copy Message Link' in the right click menu of a message), \n - <messageid> (only works if that server has edit logs enabled) or \n - <messageid>-<channelid> (can be acquired by holding shift when clicking 'copy id' on the message menu)`",
