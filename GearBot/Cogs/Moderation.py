@@ -241,7 +241,7 @@ class Moderation(BaseCog):
         if len(targets) > 0:
             await Confirmation.confirm(ctx, Translator.translate("mkick_confirm", ctx), on_yes=yes)
         else:
-            await Utils.empty_list(ctx, "kick")
+            await ctx.send(f"Please provider userids", translate=False)
 
     @staticmethod
     async def _mass_failures_init(ctx, action, failures):
@@ -399,7 +399,7 @@ class Moderation(BaseCog):
         if len(targets) > 0:
             await Confirmation.confirm(ctx, Translator.translate("mban_confirm", ctx), on_yes=yes)
         else:
-            await Utils.empty_list(ctx, "ban")
+            await ctx.send(f"Please provider userids", translate=False)
 
     @commands.guild_only()
     @commands.command()
@@ -420,7 +420,7 @@ class Moderation(BaseCog):
         if len(targets) > 0:
             await Confirmation.confirm(ctx, Translator.translate("munban_confirm", ctx), on_yes=yes)
         else:
-            await Utils.empty_list(ctx, "unban")
+            await ctx.send(f"Please provider userids", translate=False)
     
     @commands.guild_only()
     @commands.command(aliases=["mcb"])
@@ -466,7 +466,7 @@ class Moderation(BaseCog):
         if len(targets) > 0:
             await Confirmation.confirm(ctx, Translator.translate("mcleanban_confirm", ctx), on_yes=yes)
         else:
-            await Utils.empty_list(ctx, "ban")
+            await ctx.send(f"Please provider userids", translate=False)
 
     @commands.command(aliases=["softban"])
     @commands.guild_only()
