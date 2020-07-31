@@ -73,7 +73,7 @@ class Moderation(BaseCog):
     @commands.guild_only()
     async def seen(self, ctx, user: discord.Member):
         """seen_help"""
-        messages = LoggedMessage.select().where(LoggedMessage.author == user.id).order_by(LoggedMessage.messageid.desc()).limit(1)
+        messages = await LoggedMessage.filter(author=user.id).order_by("-messageid").limit(1).prefetch_related("attachments")
         if len(messages) is 0:
             await MessageUtils.send_to(ctx, "SPY", "seen_fail", user_id=user.id, user=Utils.clean_user(user))
         else:
@@ -678,6 +678,10 @@ class Moderation(BaseCog):
                                 await target.add_roles(role, reason=Utils.trim_message(
                                     f"Moderator: {ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id}) Reason: {reason}",
                                     500))
+                                if target.voice:
+                                    permissions = target.voice.channel.permissions_for(ctx.guild.me)
+                                    if permissions.move_members:
+                                        await target.move_to(None, reason=f"Moderator: {ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id}) Reason: {reason}")
                                 until = time.time() + duration_seconds
                                 i = InfractionUtils.add_infraction(ctx.guild.id, target.id, ctx.author.id, "Mute", reason,
                                                                end=until)
@@ -734,7 +738,7 @@ class Moderation(BaseCog):
                                                            reason=reason, inf_id=infraction.id, end=infraction.end)
                                     name = Utils.clean_user(target)
                                     if Configuration.get_var(ctx.guild.id, "INFRACTIONS", "DM_ON_MUTE"):
-                                        try: 
+                                        try:
                                             dur=f'{duration.length}{duration.unit}'
                                             await target.send(
                                                 f"{Emoji.get_chat_emoji('MUTE')} {Translator.translate('mute_duration_until_dm', ctx.guild.id, server=ctx.guild.name, duration=dur)}```{reason}```")
