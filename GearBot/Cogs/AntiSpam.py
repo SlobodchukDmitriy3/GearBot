@@ -299,6 +299,7 @@ class AntiSpam(BaseCog):
         # reciever taks for someone gets censored
         while self.running:
             try:
+                message = None
                 message = await self.bot.wait_for("user_censored")
                 # make sure our cog is still running so we don't handle it twice
                 if not self.running:
