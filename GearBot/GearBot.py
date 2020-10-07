@@ -9,9 +9,6 @@ from discord import Intents, MemberCacheFlags
 def prefix_callable(bot, message):
     return TheRealGearBot.prefix_callable(bot, message)
 
-gearbot = GearBot(command_prefix=prefix_callable, case_insensitive=True, max_messages = 100) #100 is the min for some reason
-
-
 
 
 if __name__ == '__main__':
@@ -21,7 +18,7 @@ if __name__ == '__main__':
     GearbotLogging.init_logger()
 
     clargs = parser.parse_args()
-    GearbotLogging.init_logger(int(clargs.offset) if clargs.offset else 0)
+    GearbotLogging.init_logger()
     if 'gearbotlogin' in os.environ:
         token = os.environ['gearbotlogin']
     elif clargs.token:
@@ -55,15 +52,7 @@ if __name__ == '__main__':
             joined=True,
         )
     }
-    if clargs.total_shards:
-        total_shards = int(clargs.total_shards)
-        offset = int(clargs.offset)
-        num_shards = int(clargs.num_shards)
-        args.update({
-            "shard_count": total_shards,
-            "cluster": offset,
-            "shard_ids": [*range(offset * num_shards, (offset * num_shards) + num_shards)]
-        })
+
 
     gearbot = GearBot(**args)
 
