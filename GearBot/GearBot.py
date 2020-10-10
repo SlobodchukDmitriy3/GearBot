@@ -50,7 +50,8 @@ if __name__ == '__main__':
             online=False,
             voice=True,
             joined=True,
-        )
+        ),
+        "chunk_guilds_at_startup": False
     }
 
 
