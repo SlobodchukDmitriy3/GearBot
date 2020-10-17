@@ -855,7 +855,7 @@ class Moderation(BaseCog):
                         except (discord.HTTPException, AttributeError):
                             GearbotLogging.log_key(ctx.guild.id, 'unmute_could_not_dm', user=name,
                                                 userid=target.id)
-                    await Infraction.filter(user_id=target.id, type="Mute", guild_id=ctx.guild.id).update(active=False)
+                    Infraction.update(active=False).where((Infraction.user_id == target.id) & (Infraction.type == "Mute") & (Infraction.guild_id == ctx.guild.id) & Infraction.active).execute()
                     await target.remove_roles(role, reason=f"Unmuted by {ctx.author.name}, {reason}")
                     await MessageUtils.send_to(ctx, 'INNOCENT', 'unmute_confirmation', user=Utils.clean_user(target), inf = i.id)
                     GearbotLogging.log_key(ctx.guild.id, 'unmute_modlog', user=Utils.clean_user(target), user_id=target.id, moderator=Utils.clean_user(ctx.author), moderator_id=ctx.author.id, reason=reason, inf=i.id)
