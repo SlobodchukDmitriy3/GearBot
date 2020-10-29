@@ -25,7 +25,7 @@ async def confirm(ctx: commands.Context, text, timeout=30, on_yes=None, on_no=No
         return reaction.user_id == ctx.message.author.id and reaction.emoji in (yes, no) and reaction.message_id == message.id
 
     try:
-        reaction, user = await ctx.bot.wait_for('reaction_add', timeout=timeout, check=check)
+        reaction = await ctx.bot.wait_for('raw_reaction_add', timeout=timeout, check=check)
     except asyncio.TimeoutError:
         try:
             await message.delete()
