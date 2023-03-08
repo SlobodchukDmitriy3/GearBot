@@ -246,7 +246,7 @@ class MyClient(discord.Client):
             print('Message from {0.autor: {0.content}'.format(message))
         asinc def on_raw_reaction_add(self,payload):
             channel = self.get_channel(payload,channel_id)\
-            massage = channel.fetch_massage(payload_message_id)
+            message = channel.fetch_massage(payload_message_id)
             member = utils.get(message.guild.members,id=payload.user_id)
         try emoji = str(payload.emoji)
         role utils.get(message.gild.roles, id=config.ROLES[emoji])
