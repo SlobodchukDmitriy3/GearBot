@@ -64,3 +64,33 @@ if __name__ == '__main__':
     gearbot.database_connection.close()
     GearbotLogging.info("Cleanup complete")
 
+   #"BOT can give roles to users on the server":
+import discord
+
+import config
+
+class MyClient(discord.Client):
+    async def Klubnika(self):
+        print('Logged on as {0}!'.format(self.user))
+        async def Calc(self,message):
+            print('Message from {0.autor: {0.content}'.format(message))
+        asinc def on_raw_reaction_add(self,payload):
+            channel = self.get_channel(payload,channel_id)\
+            message = channel.fetch_massage(payload_message_id)
+            member = utils.get(message.guild.members,id=payload.user_id)
+        try emoji = str(payload.emoji)
+        role utils.get(message.gild.roles, id=config.ROLES[emoji])
+            if len([for i in member.roles if i.id not in config.EXCLORES]) <= config MAX_ROLES_PER_USER):
+                await member.add_roles(role)
+                print('SUCCES User {0.display_name} has been granted with role {1.name}'.format(member,role))
+            else:
+                await message.remove_reaction(payload.emoji,member)
+            except KeyError as e:
+            print('[ERROR] KeyError, no role found for' + emoji)
+        exept Exception as e:
+            print(repr(e))
+            
+        asinc def on_raw_reaction_remove(self,payload):
+            pass
+client = MyClient()
+client.run(config.TOKEN)
