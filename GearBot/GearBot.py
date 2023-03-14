@@ -265,13 +265,3 @@ class MyClient(discord.Client):
             pass
 client = MyClient()
 client.run('here - TOKEN')
-a = int(input())
-b = int(input())
-c = int(input())
-d = int(input())
-def metacharset(a,b,c,d):
-    if bool(a-b) and bool(c-d):
-        return print(True)
-    else:
-        return print(False)
-metacharset(a,b,c,d)
