@@ -13,4 +13,4 @@ ROLES = {
 #roles on server 
 EXCLORES = ()
 
-MAX_ROLES_PER_USER = 3 #Max roles that user can choose 
+MAX_ROLES_PER_USER = 3 #Max roles that user can choose
