@@ -264,4 +264,4 @@ class MyClient(discord.Client):
         async def on_raw_reaction_remove(self,payload):
             pass
 client = MyClient()
-client.run('here - TOKEN')
+client.run('here - TOKEN')#.
